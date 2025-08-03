@@ -1,4 +1,7 @@
-﻿namespace Shared.DDD;
+﻿using Shared.DDD.DomainEvents;
+using Shared.DDD.Entities;
+
+namespace Shared.DDD.Aggregate;
 
 public abstract class Aggregate<TId> : Entity<TId>, IAggregate<TId>
 {
