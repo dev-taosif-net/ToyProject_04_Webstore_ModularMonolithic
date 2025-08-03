@@ -1,0 +1,2 @@
+# ToyProject_04_Webstore_ModularMonolithic
+Implementation of Modular Monolithic Architecture.
