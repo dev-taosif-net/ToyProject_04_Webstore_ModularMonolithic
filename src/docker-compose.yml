@@ -1,6 +1,9 @@
+version: '3.8'
+
 services:
-  api:
-    image: ${DOCKER_REGISTRY-}api
-    build:
-      context: .
-      dockerfile: API/Dockerfile
+  webStoreDb:
+    image: postgres:15
+
+volumes:
+  postgres_webStoreDbData:
+
