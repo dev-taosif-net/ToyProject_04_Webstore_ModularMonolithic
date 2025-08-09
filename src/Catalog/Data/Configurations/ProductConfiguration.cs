@@ -12,7 +12,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product.Models.Prod
 
         builder.Property(p => p.Description).HasMaxLength(200);
 
-        builder.Property(p => p.ImageFile).HasMaxLength(200);
+        builder.Property(p => p.ImageFile).HasMaxLength(100);
 
         builder.Property(p => p.Price).IsRequired();
     }
