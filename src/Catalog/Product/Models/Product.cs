@@ -1,7 +1,4 @@
-﻿using Catalog.Product.Events;
-using Shared.DDD.Aggregate;
-
-namespace Catalog.Product.Models;
+﻿namespace Catalog.Product.Models;
 
 //Rich domain model entity
 public class Product : Aggregate<Guid>
