@@ -22,7 +22,7 @@ public static class Extentions
         using var scope = serviceProvider.CreateScope();
 
         var context = scope.ServiceProvider.GetRequiredService<TContext>();
-        await context.Database.MigrateAsync();
+        //await context.Database.MigrateAsync();
     }
 
     private static async Task SeedDataAsync(IServiceProvider serviceProvider)
