@@ -1,4 +1,5 @@
-﻿using Catalog.Data;
+﻿using System.Reflection;
+using Catalog.Data;
 using Catalog.Data.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -15,10 +16,21 @@ public static class CatalogModule
 {
     public static IServiceCollection AddCatalogModule(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
-        services.AddDbContext<CatalogDbContext>(options =>
+
+        //Services
+        services.AddMediatR(serviceConfiguration =>
         {
-            options.AddInterceptors(new AuditableEntityInterceptor());
+            serviceConfiguration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+        });
+        //Data
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+        services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+
+        services.AddDbContext<CatalogDbContext>(( sp, options) =>
+        {
+            options.AddInterceptors(sp.GetService<ISaveChangesInterceptor>()!);
             options.UseNpgsql(connectionString);
         });
 
