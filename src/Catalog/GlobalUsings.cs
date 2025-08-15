@@ -3,3 +3,8 @@ global using Catalog.Product.Events;
 global using Shared.DDD.Aggregate;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Catalog.Data;
+global using Catalog.Product.Dtos;
+global using Shared.CQRS.Command;
+global using Shared.CQRS.Query;
+global using Mapster;
