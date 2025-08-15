@@ -8,6 +8,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSwaggerGen();
+
         services.AddCatalogModule(configuration);
         services.AddBasketModule(configuration);
         services.AddOrderingModule(configuration);
