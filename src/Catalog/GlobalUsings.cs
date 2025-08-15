@@ -8,3 +8,5 @@ global using Catalog.Product.Dtos;
 global using Shared.CQRS.Command;
 global using Shared.CQRS.Query;
 global using Mapster;
+global using MediatR;
+global using Microsoft.Extensions.Logging;
