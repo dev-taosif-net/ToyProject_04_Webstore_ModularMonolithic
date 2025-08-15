@@ -1,4 +1,5 @@
 ﻿using Basket;
+using Carter;
 using Catalog;
 using Ordering;
 
@@ -10,6 +11,12 @@ public static class ServiceCollectionExtensions
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        var catalogAssembly = typeof(CatalogModule).Assembly;
+        var basketAssembly = typeof(BasketModule).Assembly;
+        var orderingAssembly = typeof(OrderingModule).Assembly;
+
+        services.AddCarterWithAssemblies(catalogAssembly, basketAssembly, orderingAssembly);
 
         services.AddCatalogModule(configuration);
         services.AddBasketModule(configuration);

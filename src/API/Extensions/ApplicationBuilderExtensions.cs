@@ -11,6 +11,9 @@ public static class ApplicationBuilderExtensions
             app.UseSwaggerUI();
         }
 
+
+
+
         app.UseCatalogModule(env);
         app.UseBasketModule(env);
         app.UseOrderingModule(env);
