@@ -12,6 +12,9 @@ public class CreateProductEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
+        // var group = app.MapGroup("/products")
+        //     .WithTags("Products");
+
         app.MapPost("/products", async (CreateProductRequest request, ISender sender) =>
             {
                 var command = request.Adapt<CreateProductCommand>();
