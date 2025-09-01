@@ -24,13 +24,17 @@ public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TReq
 
         if (failures.Count == 0) return await next(cancellationToken);
 
-        var errorDtos = failures.Select(e => new ValidationErrorDto
-        {
-            PropertyName = e.PropertyName,
-            ErrorMessage = e.ErrorMessage
-        }).ToList();
+        throw new ValidationException(failures);
 
-        throw new CustomValidationException(errorDtos);
+
+        //var errorDtos = failures.Select(e => new ValidationErrorDto
+        //{
+        //    PropertyName = e.PropertyName,
+        //    ErrorMessage = e.ErrorMessage
+        //}).ToList();
+
+        //throw new CustomValidationException(errorDtos);
+
 
     }
 }
