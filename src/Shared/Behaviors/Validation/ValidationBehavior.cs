@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
 using Shared.CQRS.Command;
-using Shared.Exceptions;
 
 namespace Shared.Behaviors.Validation;
 
@@ -27,20 +26,5 @@ public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TReq
         throw new ValidationException(failures);
 
 
-        //var errorDtos = failures.Select(e => new ValidationErrorDto
-        //{
-        //    PropertyName = e.PropertyName,
-        //    ErrorMessage = e.ErrorMessage
-        //}).ToList();
-
-        //throw new CustomValidationException(errorDtos);
-
-
     }
-}
-
-public class ValidationErrorDto
-{
-    public required string PropertyName { get; set; }
-    public required string ErrorMessage { get; set; }
 }
