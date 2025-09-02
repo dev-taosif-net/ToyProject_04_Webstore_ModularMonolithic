@@ -1,4 +1,6 @@
-﻿namespace Catalog.Product.Features.UpdateProduct;
+﻿using Catalog.Product.Exceptions;
+
+namespace Catalog.Product.Features.UpdateProduct;
 
 public abstract record UpdateProductCommand(ProductDto Product) : ICommand<UpdateProductResult>;
 
@@ -13,8 +15,7 @@ internal class UpdateProductHandler(CatalogDbContext dbContext) : ICommandHandle
 
         if (product is null)
         {
-            throw new Exception("Product not found");
-            // throw new ProductNotFoundException(command.Product.Id);
+            throw new ProductNotFoundException(command.Product.Id);
         }
 
         UpdateProductWithNewValues(product, command.Product);

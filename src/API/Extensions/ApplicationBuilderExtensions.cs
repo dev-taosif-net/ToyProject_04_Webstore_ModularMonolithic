@@ -11,7 +11,7 @@ public static class ApplicationBuilderExtensions
             app.UseSwaggerUI();
         }
 
-
+        app.UseExceptionHandler(options => { });
 
 
         app.UseCatalogModule(env);

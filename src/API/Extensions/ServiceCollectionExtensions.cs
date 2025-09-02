@@ -2,6 +2,7 @@
 using Carter;
 using Catalog;
 using Ordering;
+using Shared.Exceptions.Handler;
 
 namespace API.Extensions;
 
@@ -11,6 +12,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddExceptionHandler<CustomExceptionHandler>();
 
         var catalogAssembly = typeof(CatalogModule).Assembly;
         var basketAssembly = typeof(BasketModule).Assembly;
