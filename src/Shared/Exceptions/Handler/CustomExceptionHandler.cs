@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
 
 namespace Shared.Exceptions.Handler;
 
@@ -22,9 +22,10 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IE
                 exception.GetType().Name,
                 httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError
             ),
-            ValidationException =>
+            ValidationException =>  //Fluent Validation
             (
-                exception.Message,
+                //exception.Message,
+                "Taosif,",
                 exception.GetType().Name,
                 httpContext.Response.StatusCode = StatusCodes.Status400BadRequest
             ),
@@ -60,7 +61,7 @@ public class CustomExceptionHandler(ILogger<CustomExceptionHandler> logger) : IE
 
         if (exception is ValidationException validationException)
         {
-            problemDetails.Extensions.Add("ValidationErrors", validationException.Value);
+            problemDetails.Extensions.Add("ValidationErrors", validationException.Errors);
         }
 
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken: cancellationToken);

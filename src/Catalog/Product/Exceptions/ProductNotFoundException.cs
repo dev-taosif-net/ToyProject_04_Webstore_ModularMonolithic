@@ -4,7 +4,7 @@ namespace Catalog.Product.Exceptions;
 
 public class ProductNotFoundException : NotFoundException
 {
-    public ProductNotFoundException(Guid Id) : base("Product", id)
+    public ProductNotFoundException(Guid Id) : base("Product", Id)
     {
     }
 }
