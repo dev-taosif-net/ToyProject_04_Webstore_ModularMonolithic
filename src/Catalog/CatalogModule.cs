@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shared.Behaviors;
 using Shared.Behaviors.Validation;
 using Shared.Data;
 using Shared.Data.Interceptors;
@@ -23,6 +24,7 @@ public static class CatalogModule
         {
             serviceConfiguration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             serviceConfiguration.AddOpenBehavior(typeof(ValidationBehavior<,>));
+            serviceConfiguration.AddOpenBehavior(typeof(LoggingBehavior<,>));
         });
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         //Data
